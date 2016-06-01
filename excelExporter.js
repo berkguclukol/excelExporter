@@ -1,4 +1,5 @@
 var excelExporter = {};
+var dt = new Date();
 (function () {
 	var allKeys = [];
 	var keyMap = [];
@@ -165,11 +166,11 @@ var excelExporter = {};
 		return encodeURIComponent(template.replace("{table}", table.innerHTML));
 	};
 	var downloadFile = function (table) {
-		document.getElementById("container").appendChild(table);
+		document.getElementById("excelExportArea").appendChild(table);
 		var exportData = stringify(table);
 		var downloadLink = document.createElement("a");
 		downloadLink.href = type + exportData;
-		downloadLink.download = "export.xls";
+		downloadLink.download = dt.getTime() + "_data.xls";
 		document.body.appendChild(downloadLink);
 		downloadLink.click();
 		document.body.removeChild(downloadLink);
